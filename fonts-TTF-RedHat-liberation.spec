@@ -1,5 +1,6 @@
 %define		_name	liberation-fonts
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
+Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	0.1
 Release:	1
@@ -19,6 +20,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The Liberation Fonts are intended to be replacements for the three
 most commonly used fonts on Microsoft systems: Times New Roman,
 Arial, and Courier New.
+
+%description -l pl.UTF-8
+Fonty Liberation mają być zamiennikami trzech najczęściej używanych
+fontów z systemów Microsoftu: Times New Roman, Arial i Courier New.
 
 %prep
 %setup -c -n %{_name}
