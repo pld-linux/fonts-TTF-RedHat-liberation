@@ -6,9 +6,8 @@ Version:	0.1
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	%{_name}-%{version}.tar.gz
-Source0:	https://www.redhat.com/f/fonts/%{_name}-2.tar.gz
-# Source0-md5:	a874631c4641e8496cd9be5c7da74b48
+Source0:	https://www.redhat.com/f/fonts/%{_name}-ttf-2.tar.gz
+# Source0-md5:	360dee2d73159522db3be6af8ec23294
 URL:		https://www.redhat.com/promo/fonts/
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
