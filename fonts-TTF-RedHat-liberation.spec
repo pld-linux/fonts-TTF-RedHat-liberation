@@ -7,10 +7,12 @@ Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
 Source0:	%{_name}-%{version}.tar.gz
+Source0:	https://www.redhat.com/f/fonts/%{_name}-2.tar.gz
 # Source0-md5:	a874631c4641e8496cd9be5c7da74b48
 URL:		https://www.redhat.com/promo/fonts/
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
+Obsoletes:	liberation-fonts-ttf
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -18,21 +20,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The Liberation Fonts are intended to be replacements for the three
-most commonly used fonts on Microsoft systems: Times New Roman,
-Arial, and Courier New.
+most commonly used fonts on Microsoft systems: Times New Roman, Arial,
+and Courier New.
 
 %description -l pl.UTF-8
 Fonty Liberation mają być zamiennikami trzech najczęściej używanych
 fontów z systemów Microsoftu: Times New Roman, Arial i Courier New.
 
 %prep
-%setup -c -n %{_name}
+%setup -q -c -n %{_name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_ttffontsdir}
-
-install *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
