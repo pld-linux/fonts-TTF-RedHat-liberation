@@ -2,12 +2,12 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
-Version:	0.1
+Version:	0.2
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	https://www.redhat.com/f/fonts/%{_name}-ttf-2.tar.gz
-# Source0-md5:	360dee2d73159522db3be6af8ec23294
+Source0:	https://www.redhat.com/f/fonts/%{_name}-ttf-3.tar.gz
+# Source0-md5:	77728078a17e39f7c242b42c3bf6feb8
 URL:		https://www.redhat.com/promo/fonts/
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
@@ -19,15 +19,26 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The Liberation Fonts are intended to be replacements for the three
-most commonly used fonts on Microsoft systems: Times New Roman, Arial,
-and Courier New.
+most commonly used fonts on Microsoft systems.
+
+There are three sets: Sans (a substitute for Arial, Albany, Helvetica,
+Nimbus Sans L, and Bitstream Vera Sans), Serif (a substitute for Times
+New Roman, Thorndale, Nimbus Roman, and Bitstream Vera Serif) and Mono
+(a substitute for Courier New, Cumberland, Courier, Nimbus Mono L, and
+Bitstream Vera Sans Mono).
 
 %description -l pl.UTF-8
 Fonty Liberation mają być zamiennikami trzech najczęściej używanych
-fontów z systemów Microsoftu: Times New Roman, Arial i Courier New.
+fontów z systemów Microsoftu.
+
+Pakiet zawiera trzy zestawy: Sans (zamiennik dla Arial, Albany,
+Helvetica, Nimbus Sans L i Bitstream Vera Sans), Serif (zamiennik dla
+Times New Roman, Thorndale, Nimbus Roman i Bitstream Vera Serif) i
+Mono (zamiennik dla Courier New, Cumberland, Courier, Nimbus Mono L i
+Bitstream Vera Sans Mono).
 
 %prep
-%setup -q -c -n %{_name}
+%setup -q -n %{_name}-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
