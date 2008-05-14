@@ -6,8 +6,8 @@ Version:	1.0
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	%{_name}-%{version}-1.zip
-# Source0-md5:	6322c47a17c0ab83dbc6d8d23620db8c
+Source0:	https://www.redhat.com/f/fonts/liberation-fonts.tar.gz
+# Source0-md5:	f7d82c491914a318a6f0d426c5eb1432
 Source1:	%{name}.fontconfig
 URL:		https://www.redhat.com/promo/fonts/
 Requires(post,postun):	fontpostinst
@@ -44,8 +44,9 @@ Bitstream Vera Sans Mono).
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_ttffontsdir}
-cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
+
+cp -a liberation-fonts/*.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
 
 %clean
