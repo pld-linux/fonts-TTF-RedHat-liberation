@@ -3,7 +3,7 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	1.0
-Release:	1
+Release:	2
 License:	GPL v2 + exceptions
 Group:		Fonts
 Source0:	https://www.redhat.com/f/fonts/liberation-fonts.tar.gz
@@ -45,9 +45,11 @@ Bitstream Vera Sans Mono).
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
 cp -a liberation-fonts/*.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
+ln -s ../conf.avail/60-liberation.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,3 +64,4 @@ fontpostinst TTF
 %defattr(644,root,root,755)
 %{_ttffontsdir}/*
 %{_sysconfdir}/fonts/conf.avail/60-liberation.conf
+%{_sysconfdir}/fonts/conf.d/60-liberation.conf
