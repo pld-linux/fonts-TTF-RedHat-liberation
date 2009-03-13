@@ -1,12 +1,12 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
-Version:	1.04
+Version:	1.04.93
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	4846797ef0fc70b0cbaede2514677c58
+Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.devel.tar.gz
+# Source0-md5:	d19457dea29b4daffbe5ba9ac1746d7e
 Source1:	%{name}.fontconfig
 URL:		https://fedorahosted.org/liberation-fonts/
 Requires(post,postun):	fontpostinst
@@ -38,7 +38,7 @@ Mono (zamiennik dla Courier New, Cumberland, Courier, Nimbus Mono L i
 Bitstream Vera Sans Mono).
 
 %prep
-%setup -q -n liberation-fonts-%{version}
+%setup -q -n liberation-fonts-%{version}.devel
 
 %install
 rm -rf $RPM_BUILD_ROOT
