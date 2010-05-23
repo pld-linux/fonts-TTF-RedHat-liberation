@@ -1,14 +1,14 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
-Version:	1.05.2.20091227
+Version:	1.05
 # https://bugzilla.redhat.com/show_bug.cgi?id=508899
 Release:	0.1
 Epoch:		1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-ttf-%{version}.tar.gz
-# Source0-md5:	c61feadcb9195f5a111de4018b85b974
+Source0:	http://github.com/downloads/kaio/liberation-fonts/liberation-fonts-ttf-%{version}.zip
+# Source0-md5:	a3237526c7cf0c9a16c0582c5293b38b
 Source1:	%{name}.fontconfig
 URL:		https://fedorahosted.org/liberation-fonts/
 Requires(post,postun):	fontpostinst
@@ -48,7 +48,7 @@ install -d $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
-cp -a ttf/*.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
 ln -s ../conf.avail/60-liberation.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
