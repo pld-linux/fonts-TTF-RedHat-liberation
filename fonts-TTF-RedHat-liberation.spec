@@ -11,6 +11,7 @@ Source0:	http://github.com/downloads/kaio/liberation-fonts/liberation-fonts-ttf-
 # Source0-md5:	a3237526c7cf0c9a16c0582c5293b38b
 Source1:	%{name}.fontconfig
 URL:		https://fedorahosted.org/liberation-fonts/
+BuildRequires:	unzip
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
 Obsoletes:	liberation-fonts-ttf
