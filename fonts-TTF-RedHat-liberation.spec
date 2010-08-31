@@ -2,15 +2,16 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	1.06.0.20100721
-# https://bugzilla.redhat.com/show_bug.cgi?id=508899
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-ttf-%{version}.tar.gz
-# Source0-md5:	ca4870d899fd7e943ffc310a5421ad4d
+Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
+# Source0-md5:	2f45bd873ab48cf0c3a00fbd350c0e80
 Source1:	%{name}.fontconfig
+Patch0:		rh-bug-620273.patch
 URL:		https://fedorahosted.org/liberation-fonts/
+BuildRequires:	fontforge >= 20090923
 BuildRequires:	unzip
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
@@ -41,7 +42,11 @@ Mono (zamiennik dla Courier New, Cumberland, Courier, Nimbus Mono L i
 Bitstream Vera Sans Mono).
 
 %prep
-%setup -q -n liberation-fonts-ttf-%{version}
+%setup -q -n liberation-fonts-%{version}
+%patch0 -p0
+
+%build
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -49,7 +54,7 @@ install -d $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
-cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+cp -a liberation-*/*.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
 ln -s ../conf.avail/60-liberation.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
