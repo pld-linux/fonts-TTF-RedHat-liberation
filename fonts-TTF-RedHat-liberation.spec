@@ -2,13 +2,14 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	1.07.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2 + exceptions
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
 # Source0-md5:	87ba9eea831ebc6fab9578abcebda9a5
 Source1:	%{name}.fontconfig
+Source2:	generate.pe
 URL:		https://fedorahosted.org/liberation-fonts/
 BuildRequires:	fontforge >= 20090923
 BuildRequires:	unzip
@@ -42,9 +43,11 @@ Bitstream Vera Sans Mono).
 
 %prep
 %setup -q -n liberation-fonts-%{version}
+install -m755 %{SOURCE2} .
 
 %build
-%{__make}
+rm -f *.ttf
+ ./generate.pe src/*.sfd
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -52,7 +55,7 @@ install -d $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
-cp -a liberation-*/*.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
 ln -s ../conf.avail/60-liberation.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
@@ -68,9 +71,8 @@ fontpostinst TTF
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog License.txt README
-%{_ttffontsdir}/LiberationMono-*.ttf
-%{_ttffontsdir}/LiberationSans-*.ttf
-%{_ttffontsdir}/LiberationSansNarrow-*.ttf
-%{_ttffontsdir}/LiberationSerif-*.ttf
+%{_ttffontsdir}/LiberationMono*.ttf
+%{_ttffontsdir}/LiberationSans*.ttf
+%{_ttffontsdir}/LiberationSerif*.ttf
 %{_sysconfdir}/fonts/conf.avail/60-liberation.conf
 %{_sysconfdir}/fonts/conf.d/60-liberation.conf
