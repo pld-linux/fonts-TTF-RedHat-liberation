@@ -47,7 +47,7 @@ install -m755 %{SOURCE2} .
 
 %build
 rm -f *.ttf
- ./generate.pe src/*.sfd
+./generate.pe src/*.sfd
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,7 +70,7 @@ fontpostinst TTF
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog License.txt README
+%doc AUTHORS ChangeLog License.txt README TODO
 %{_ttffontsdir}/LiberationMono*.ttf
 %{_ttffontsdir}/LiberationSans*.ttf
 %{_ttffontsdir}/LiberationSerif*.ttf
