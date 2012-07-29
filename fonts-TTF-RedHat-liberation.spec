@@ -2,14 +2,16 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	2.00.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	OFL
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	5b5055ed755025891f908b7726fea482
-Source1:	%{name}.fontconfig
-Source2:	generate.pe
+# Source0-md5:	293b364f3de019f0b19ddd54d36737e6
+Source1:	generate.pe
+Source2:	59-liberation-mono.conf
+Source3:	59-liberation-sans.conf
+Source4:	59-liberation-serif.conf
 URL:		https://fedorahosted.org/liberation-fonts/
 BuildRequires:	fontforge >= 20090923
 Requires(post,postun):	fontpostinst
@@ -42,7 +44,7 @@ Bitstream Vera Sans Mono).
 
 %prep
 %setup -q -n liberation-fonts-%{version}
-install -m755 %{SOURCE2} .
+install -m755 %{SOURCE1} .
 
 %build
 rm -f *.ttf
@@ -55,8 +57,14 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
 cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
-ln -s ../conf.avail/60-liberation.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-mono.conf
+install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-sans.conf
+install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-serif.conf
+
+ln -s ../conf.avail/59-liberation-mono.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
+ln -s ../conf.avail/59-liberation-sans.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
+ln -s ../conf.avail/59-liberation-serif.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,5 +81,5 @@ fontpostinst TTF
 %{_ttffontsdir}/LiberationMono*.ttf
 %{_ttffontsdir}/LiberationSans*.ttf
 %{_ttffontsdir}/LiberationSerif*.ttf
-%{_sysconfdir}/fonts/conf.avail/60-liberation.conf
-%{_sysconfdir}/fonts/conf.d/60-liberation.conf
+%{_sysconfdir}/fonts/conf.avail/59-liberation-*.conf
+%{_sysconfdir}/fonts/conf.d/59-liberation-*.conf
