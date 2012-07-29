@@ -7,7 +7,7 @@ Epoch:		1
 License:	OFL
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	293b364f3de019f0b19ddd54d36737e6
+# Source0-md5:	5b5055ed755025891f908b7726fea482
 Source1:	generate.pe
 Source2:	59-liberation-mono.conf
 Source3:	59-liberation-sans.conf
