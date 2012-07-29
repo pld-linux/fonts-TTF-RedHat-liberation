@@ -56,6 +56,10 @@ install -d $RPM_BUILD_ROOT%{_ttffontsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
+mv LiberationMono.ttf LiberationMono-Regular.ttf
+mv LiberationSerif.ttf LiberationSerif-Regular.ttf
+mv LiberationSans.ttf LiberationSans-Regular.ttf
+
 cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-mono.conf
