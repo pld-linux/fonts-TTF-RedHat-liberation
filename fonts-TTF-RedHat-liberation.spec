@@ -44,27 +44,25 @@ Bitstream Vera Sans Mono).
 
 %prep
 %setup -q -n liberation-fonts-%{version}
-install -m755 %{SOURCE1} .
+install -p %{SOURCE1} .
 
 %build
 rm -f *.ttf
 ./generate.pe src/*.sfd
 
-%install
-rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_ttffontsdir}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
-
 mv LiberationMono.ttf LiberationMono-Regular.ttf
 mv LiberationSerif.ttf LiberationSerif-Regular.ttf
 mv LiberationSans.ttf LiberationSans-Regular.ttf
 
-cp -a *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+%install
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_ttffontsdir},%{_sysconfdir}/fonts/{conf.d,conf.avail}}
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-mono.conf
-install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-sans.conf
-install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-serif.conf
+cp -p *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
+
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-mono.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-sans.conf
+cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.avail/59-liberation-serif.conf
 
 ln -s ../conf.avail/59-liberation-mono.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 ln -s ../conf.avail/59-liberation-sans.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
