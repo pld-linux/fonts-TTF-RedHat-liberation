@@ -2,18 +2,18 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	2.00.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	OFL
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
 # Source0-md5:	a0dfdcffcd0398afe5f57269198846e9
-Source1:	generate.pe
-Source2:	30-0-liberation-mono.conf
-Source3:	30-0-liberation-sans.conf
-Source4:	30-0-liberation-serif.conf
+Source1:	30-0-liberation-mono.conf
+Source2:	30-0-liberation-sans.conf
+Source3:	30-0-liberation-serif.conf
 URL:		https://fedorahosted.org/liberation-fonts/
 BuildRequires:	fontforge >= 20090923
+BuildRequires:	fonttools
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
 Requires:	fontconfig >= 1:2.10.1
@@ -45,15 +45,10 @@ Bitstream Vera Sans Mono).
 
 %prep
 %setup -q -n liberation-fonts-%{version}
-install -p %{SOURCE1} .
 
 %build
-rm -f *.ttf
-./generate.pe src/*.sfd
-
-mv LiberationMono.ttf LiberationMono-Regular.ttf
-mv LiberationSerif.ttf LiberationSerif-Regular.ttf
-mv LiberationSans.ttf LiberationSans-Regular.ttf
+%{__make}
+mv liberation-fonts-ttf-%{version}/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -61,9 +56,9 @@ install -d $RPM_BUILD_ROOT{%{_ttffontsdir},%{_sysconfdir}/fonts/conf.d,%{_datadi
 
 cp -p *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 
-cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-mono.conf
-cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-sans.conf
-cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-serif.conf
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-mono.conf
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-sans.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/30-0-liberation-serif.conf
 
 ln -s %{_datadir}/fontconfig/conf.avail/30-0-liberation-mono.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 ln -s %{_datadir}/fontconfig/conf.avail/30-0-liberation-sans.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
