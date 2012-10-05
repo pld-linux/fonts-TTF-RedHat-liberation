@@ -1,13 +1,13 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
-Version:	2.00.0
-Release:	4
+Version:	2.00.1
+Release:	1
 Epoch:		1
 License:	OFL
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	5b5055ed755025891f908b7726fea482
+# Source0-md5:	a0dfdcffcd0398afe5f57269198846e9
 Source1:	generate.pe
 Source2:	30-0-liberation-mono.conf
 Source3:	30-0-liberation-sans.conf
