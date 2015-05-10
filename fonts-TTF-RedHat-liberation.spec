@@ -2,7 +2,7 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
 Version:	2.00.1
-Release:	4
+Release:	5
 Epoch:		1
 License:	OFL
 Group:		Fonts
@@ -14,8 +14,7 @@ Source3:	30-0-liberation-serif.conf
 URL:		https://fedorahosted.org/liberation-fonts/
 BuildRequires:	fontforge >= 20090923
 BuildRequires:	fonttools
-Requires(post,postun):	fontpostinst
-Requires:	%{_fontsdir}/TTF
+Suggests:	fontpostinst
 Obsoletes:	liberation-fonts-ttf
 Conflicts:	fontconfig < 1:2.10.1
 BuildArch:	noarch
@@ -67,11 +66,15 @@ ln -s %{_datadir}/fontconfig/conf.avail/30-0-liberation-serif.conf $RPM_BUILD_RO
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-fontpostinst TTF
+%triggerin -- fontpostinst
+if [ "$1" = "1" ] && [ "$2" = "1" ]; then
+	fontpostinst TTF
+fi
 
-%postun
-fontpostinst TTF
+%triggerun -- fontpostinst
+if [ "$1" = "0" ] || [ "$2" = "0" ]; then
+	fontpostinst TTF
+fi
 
 %files
 %defattr(644,root,root,755)
