@@ -6,12 +6,12 @@ Release:	5
 Epoch:		1
 License:	OFL
 Group:		Fonts
-Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
+Source0:	https://releases.pagure.org/liberation-fonts/liberation-fonts-%{version}.tar.gz
 # Source0-md5:	a0dfdcffcd0398afe5f57269198846e9
 Source1:	30-0-liberation-mono.conf
 Source2:	30-0-liberation-sans.conf
 Source3:	30-0-liberation-serif.conf
-URL:		https://fedorahosted.org/liberation-fonts/
+URL:		https://pagure.io/liberation-fonts
 BuildRequires:	fontforge >= 20090923
 BuildRequires:	fonttools
 Suggests:	fontpostinst
