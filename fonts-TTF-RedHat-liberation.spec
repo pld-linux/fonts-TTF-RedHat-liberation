@@ -1,19 +1,20 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation
-Version:	2.00.1
-Release:	5
+Version:	2.00.4
+Release:	1
 Epoch:		1
 License:	OFL
 Group:		Fonts
-Source0:	https://releases.pagure.org/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	a0dfdcffcd0398afe5f57269198846e9
+#Source0Download: https://github.com/liberationfonts/liberation-fonts/releases
+Source0:	https://github.com/liberationfonts/liberation-fonts/files/2579282/liberation-fonts-%{version}.tar.gz
+# Source0-md5:	4953c1305b19e08158ea8827ad082aea
 Source1:	30-0-liberation-mono.conf
 Source2:	30-0-liberation-sans.conf
 Source3:	30-0-liberation-serif.conf
-URL:		https://pagure.io/liberation-fonts
+URL:		https://github.com/liberationfonts/liberation-fonts
 BuildRequires:	fontforge >= 20090923
-BuildRequires:	fonttools
+BuildRequires:	python3-fonttools
 Suggests:	fontpostinst
 Obsoletes:	liberation-fonts-ttf
 Conflicts:	fontconfig < 1:2.10.1
@@ -47,7 +48,7 @@ Bitstream Vera Sans Mono).
 
 %build
 %{__make}
-mv liberation-fonts-ttf-%{version}/* .
+%{__mv} liberation-fonts-ttf-%{version}/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
